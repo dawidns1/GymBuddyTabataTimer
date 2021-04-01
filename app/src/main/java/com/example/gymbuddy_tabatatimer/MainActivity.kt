@@ -31,12 +31,9 @@ class MainActivity : AppCompatActivity() {
                 tabatas.addAll(Utils.getInstance(this@MainActivity).getAllTabatas()!!)
                 notifyDataSetChanged()
             }
-//            tabatasRV.layoutManager = LinearLayoutManager(this)
-//            adapter = TabatasRVAdapter(tabatas, this, this)
-//            tabatasRV.adapter = adapter
+            // TODO: 01.04.2021 zmiana
             true
         }
-
         super.onResume()
     }
 
