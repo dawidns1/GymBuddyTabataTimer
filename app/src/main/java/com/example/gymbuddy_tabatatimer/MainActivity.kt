@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                 notifyDataSetChanged()
             }
             // TODO: 01.04.2021 zmiana
-            true
+            false
         }
         super.onResume()
     }
