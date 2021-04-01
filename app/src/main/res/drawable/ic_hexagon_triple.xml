@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <group
+        android:name="hexagonGroup"
+        android:scaleX="0.5"
+        android:scaleY="0.5">
+        <path
+            android:fillColor="#8032F1"
+            android:pathData="M 29,10.7 L 79,10.7 104,54 79,97.3 29,97.3 4,54 z"
+            android:strokeWidth="1.5"
+            android:strokeColor="#2E2E2E" />
+
+        <group
+            android:name="inner"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:translateX="27"
+            android:translateY="27">
+            <path
+                android:fillColor="#2e2e2e"
+                android:pathData="M 29,10.7 L 79,10.7 104,54 79,97.3 29,97.3 4,54 z"
+                android:strokeWidth="1.5"
+                android:strokeColor="#2E2E2E" />
+
+        </group>
+    </group>
+    <group
+        android:name="hexagonGroup"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:translateY="50">
+        <path
+            android:fillColor="#8032F1"
+            android:pathData="M 29,10.7 L 79,10.7 104,54 79,97.3 29,97.3 4,54 z"
+            android:strokeWidth="1.5"
+            android:strokeColor="#2E2E2E" />
+
+        <group
+            android:name="inner"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:translateX="27"
+            android:translateY="27">
+            <path
+                android:fillColor="#2e2e2e"
+                android:pathData="M 29,10.7 L 79,10.7 104,54 79,97.3 29,97.3 4,54 z"
+                android:strokeWidth="1.5"
+                android:strokeColor="#2E2E2E" />
+
+        </group>
+    </group>
+    <group
+        android:name="hexagonGroup"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:translateX="44"
+        android:translateY="25">
+        <path
+            android:fillColor="#8032F1"
+            android:pathData="M 29,10.7 L 79,10.7 104,54 79,97.3 29,97.3 4,54 z"
+            android:strokeWidth="1.5"
+            android:strokeColor="#2E2E2E" />
+
+        <group
+            android:name="inner"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:translateX="27"
+            android:translateY="27">
+            <path
+                android:fillColor="#2e2e2e"
+                android:pathData="M 29,10.7 L 79,10.7 104,54 79,97.3 29,97.3 4,54 z"
+                android:strokeWidth="1.5"
+                android:strokeColor="#2E2E2E" />
+
+        </group>
+    </group>
+</vector>

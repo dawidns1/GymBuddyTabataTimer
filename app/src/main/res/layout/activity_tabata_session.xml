@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentSession"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TabataSessionActivity">
+
+       <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/mainDivider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.50" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/mainDivider"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3333" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline66"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6666" />
+
+        <ImageView
+            android:id="@+id/imgPart1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_indicator3"
+            app:layout_constraintBottom_toTopOf="@+id/guideline33"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgPart1Type"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/ic_exercise"
+            app:layout_constraintBottom_toBottomOf="@id/imgPart1"
+            app:layout_constraintLeft_toLeftOf="@id/imgPart1" />
+
+        <TextView
+            android:id="@+id/txtPart1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:text="Exercise 1"
+            android:textColor="@color/white"
+            android:textSize="45dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/imgPart1"
+            app:layout_constraintLeft_toLeftOf="@id/imgPart1"
+            app:layout_constraintRight_toRightOf="@+id/imgPart1"
+            app:layout_constraintTop_toTopOf="@+id/imgPart1" />
+
+        <ImageView
+            android:id="@+id/imgPart2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:alpha="0.3"
+            android:src="@drawable/ic_indicator3"
+            app:layout_constraintBottom_toTopOf="@+id/guideline66"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline33" />
+
+        <ImageView
+            android:id="@+id/imgPart2Type"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:alpha="0.3"
+            android:src="@drawable/ic_exercise"
+            app:layout_constraintBottom_toBottomOf="@id/imgPart2"
+            app:layout_constraintLeft_toLeftOf="@id/imgPart2" />
+
+        <TextView
+            android:id="@+id/txtPart2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:alpha="0.3"
+            android:text="Exercise 2"
+            android:textColor="@color/white"
+            android:textSize="45dp"
+            android:textStyle="bold"
+
+            app:layout_constraintBottom_toBottomOf="@id/imgPart2"
+            app:layout_constraintLeft_toLeftOf="@id/imgPart2"
+            app:layout_constraintRight_toRightOf="@+id/imgPart2"
+            app:layout_constraintTop_toTopOf="@+id/imgPart2" />
+
+        <ImageView
+            android:id="@+id/imgPart3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:alpha="0.3"
+            android:src="@drawable/ic_indicator3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guideline66" />
+
+        <ImageView
+            android:id="@+id/imgPart3Type"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:alpha="0.3"
+            android:src="@drawable/ic_exercise"
+            app:layout_constraintBottom_toBottomOf="@id/imgPart3"
+            app:layout_constraintLeft_toLeftOf="@id/imgPart3" />
+
+        <TextView
+            android:id="@+id/txtPart3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:alpha="0.3"
+            android:text="Break"
+            android:textColor="@color/white"
+            android:textSize="45dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/imgPart3"
+            app:layout_constraintLeft_toLeftOf="@id/imgPart3"
+            app:layout_constraintRight_toRightOf="@+id/imgPart3"
+            app:layout_constraintTop_toTopOf="@+id/imgPart3" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainDivider">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imgLocked"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtTime"
+            app:layout_constraintBottom_toBottomOf="@id/txtTime"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_unlocked"/>
+
+        <TextView
+            android:id="@+id/txtTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="0:00"
+            android:textColor="@color/white"
+            android:textSize="160dp"
+            app:layout_constraintBottom_toTopOf="@id/cycleAndSetView"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/txtTime"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtTime" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="180"
+            android:visibility="gone"
+            android:src="@drawable/ic_arrow"
+            app:layout_constraintBottom_toBottomOf="@id/txtTime"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtTime" />
+
+        <TextView
+            android:id="@+id/txtHint1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tapTimer"
+            android:textColor="@color/purple_200"
+            android:textSize="16dp"
+            android:visibility="visible"
+            app:layout_constraintLeft_toLeftOf="@id/txtTime"
+            app:layout_constraintRight_toRightOf="@id/txtTime"
+            app:layout_constraintTop_toTopOf="@+id/txtTime" />
+
+        <TextView
+            android:id="@+id/txtHint2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/swipe"
+            android:textColor="@color/purple_200"
+            android:textSize="16dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/txtTime"
+            app:layout_constraintLeft_toLeftOf="@id/txtTime"
+            app:layout_constraintRight_toRightOf="@id/txtTime" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/secondaryDivider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/txtRound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="Round 1/2"
+            android:textColor="@color/purple_500"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/secondaryDivider"
+            app:layout_constraintLeft_toLeftOf="@id/txtTime"
+            app:layout_constraintRight_toRightOf="@id/txtTime"
+            app:layout_constraintTop_toTopOf="@+id/secondaryDivider" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cycleAndSetView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/secondaryDivider">
+
+            <ImageView
+                android:id="@+id/imgCycle"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginRight="40dp"
+                android:src="@drawable/ic_hexagon_single_transparent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/indicator1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/ic_indicator1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/imgCycle" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/cycle"
+                android:textSize="30dp"
+                app:layout_constraintBottom_toBottomOf="@id/indicator1"
+                app:layout_constraintLeft_toLeftOf="@id/indicator1"
+                app:layout_constraintRight_toRightOf="@id/indicator1"
+                app:layout_constraintTop_toTopOf="@id/indicator1" />
+
+            <TextView
+                android:id="@+id/txtCycle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="1"
+                android:textColor="@color/purple_200"
+                android:textSize="75dp"
+                app:layout_constraintBottom_toBottomOf="@id/imgCycle"
+                app:layout_constraintLeft_toLeftOf="@id/imgCycle"
+                app:layout_constraintRight_toRightOf="@id/imgCycle"
+                app:layout_constraintTop_toTopOf="@id/imgCycle" />
+
+            <TextView
+                android:id="@+id/txtCycleTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/7"
+                android:textColor="@color/grey_200"
+                android:textSize="25dp"
+                app:layout_constraintBottom_toBottomOf="@id/txtCycle"
+                app:layout_constraintLeft_toRightOf="@id/txtCycle"
+                app:layout_constraintTop_toTopOf="@+id/txtCycle" />
+
+            <ImageView
+                android:id="@+id/imgSet"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="40dp"
+                android:src="@drawable/ic_hexagon_single_transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintLeft_toLeftOf="@id/guideline"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <ImageView
+                android:id="@+id/indicator2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/ic_indicator2"
+                app:layout_constraintBottom_toBottomOf="@id/imgSet"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="@string/set"
+                android:textSize="30dp"
+                app:layout_constraintBottom_toBottomOf="@id/indicator2"
+                app:layout_constraintLeft_toLeftOf="@id/indicator2"
+                app:layout_constraintRight_toRightOf="@id/indicator2"
+                app:layout_constraintTop_toTopOf="@id/indicator2" />
+
+            <TextView
+                android:id="@+id/txtSet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="1"
+                android:textColor="@color/purple_200"
+                android:textSize="75dp"
+                app:layout_constraintBottom_toBottomOf="@id/imgSet"
+                app:layout_constraintLeft_toLeftOf="@id/imgSet"
+                app:layout_constraintRight_toRightOf="@id/imgSet"
+                app:layout_constraintTop_toTopOf="@id/imgSet" />
+
+            <TextView
+                android:id="@+id/txtSetTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/7"
+                android:textColor="@color/grey_200"
+                android:textSize="25dp"
+                app:layout_constraintBottom_toBottomOf="@id/txtSet"
+                app:layout_constraintLeft_toRightOf="@id/txtSet"
+                app:layout_constraintTop_toTopOf="@+id/txtSet" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

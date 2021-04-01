@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name" translatable="false">GB tabata timer</string>
+    <string name="pressBackToExit">Press BACK again to exit</string>
+    <string name="finish">finish</string>
+    <string name="round">Round</string>
+    <string name="setMarker">set marker</string>
+    <string name="setBreak">set break</string>
+    <string name="breakTxt">break</string>
+    <string name="preparation">preparation</string>
+    <string name="end">END</string>
+    <string name="add">Add</string>
+    <string name="exercise">exercise</string>
+    <string name="name">Name:</string>
+    <string name="duration">Duration:</string>
+    <string name="cycles">Cycles:</string>
+    <string name="breakAfterSet">Break after set:</string>
+    <string name="save">save</string>
+    <string name="tabataDeleted">Tabata deleted</string>
+    <string name="undo">Undo</string>
+    <string name="cancel">Cancel</string>
+    <string name="partDeleted">Part deleted</string>
+    <string name="insertName">Insert name</string>
+    <string name="ok" translatable="false">Ok</string>
+    <string name="addNewTabata">Add new tabata - insert name</string>
+    <string name="tabataTimer" translatable="false">Tabata timer</string>
+    <string name="preparationCap">Preparation:</string>
+    <string name="roundDuration">Round duration:</string>
+    <string name="roundsCap">Rounds:</string>
+    <string name="total" translatable="false">Total:</string>
+    <string name="partType">Part type:</string>
+    <string name="tapTimer">tap timer to start/pause</string>
+    <string name="swipe">swipe left to back / swipe right to skip</string>
+    <string name="cycle">cycle</string>
+    <string name="set">set</string>
+    <string name="startTabata">Start tabata</string>
+    <string name="resume">Resume</string>
+
+    <string-array name="spinnerType">
+        <item>@string/exercise</item>
+        <item>@string/breakTxt</item>
+        <item>@string/setMarker</item>
+    </string-array>
+</resources>
