@@ -91,6 +91,8 @@ class TabataSessionActivity : AppCompatActivity() {
         }
         setContentView(R.layout.activity_tabata_session)
 
+        Helpers.handleAds(tabataSessionAdContainer,this)
+
         supportActionBar?.hide()
 
         val intent = intent
@@ -477,7 +479,7 @@ class TabataSessionActivity : AppCompatActivity() {
             timeLeftTxt += "0"
         }
         timeLeftTxt += seconds
-        var color = when (seconds) {
+        val color = when (seconds) {
             0 -> R.color.purple_500
             1, 2, 3 -> R.color.purple_200
             else -> R.color.white

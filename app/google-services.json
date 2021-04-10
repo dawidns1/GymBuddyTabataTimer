@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "44559244530",
+    "project_id": "gb-tabata-timer",
+    "storage_bucket": "gb-tabata-timer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44559244530:android:03c10155519b470550446b",
+        "android_client_info": {
+          "package_name": "com.dawpie.gymbuddy_tabatatimer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "44559244530-6j1ht0gm615lop0jnqg3bg0r8pdrbeq7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkmF-zWSpvpVX8-20-EkMk4GXK5yZj7nw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "44559244530-6j1ht0gm615lop0jnqg3bg0r8pdrbeq7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,13 +2,20 @@ package com.example.gymbuddy_tabatatimer
 
 import android.app.Activity
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.drawable.ColorDrawable
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.FrameLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.core.content.ContextCompat
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
 
 object Helpers {
 
@@ -28,11 +35,12 @@ object Helpers {
         val inputMethodManager = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
+
     fun setupActionBar(text1: String?, text2: String?, actionBar: ActionBar, context: Context) {
         actionBar.setBackgroundDrawable(
-            ColorDrawable(
-                ContextCompat.getColor(context,R.color.purple_500)
-            )
+                ColorDrawable(
+                        ContextCompat.getColor(context, R.color.purple_500)
+                )
         )
         actionBar.setDisplayShowTitleEnabled(false)
         actionBar.setDisplayUseLogoEnabled(false)
@@ -40,8 +48,8 @@ object Helpers {
         actionBar.setDisplayShowCustomEnabled(true)
         actionBar.setDisplayShowHomeEnabled(false)
         val params = ActionBar.LayoutParams(
-            ActionBar.LayoutParams.MATCH_PARENT,
-            ActionBar.LayoutParams.MATCH_PARENT
+                ActionBar.LayoutParams.MATCH_PARENT,
+                ActionBar.LayoutParams.MATCH_PARENT
         )
         val customActionBar: View = LayoutInflater.from(context).inflate(R.layout.action_bar, null)
         actionBar.setCustomView(customActionBar, params)
@@ -50,4 +58,47 @@ object Helpers {
         abText1.text = text1
         abText2.text = text2
     }
+
+    fun handleAds(adContainer: FrameLayout, activity: Activity) {
+        val ad = AdView(activity.applicationContext)
+        ad.adUnitId = "ca-app-pub-3940256099942544/6300978111"
+        adContainer.addView(ad)
+        loadBanner(ad, activity)
+        adContainer.layoutParams.height = ad.adSize.getHeightInPixels(activity.applicationContext)
+    }
+
+    private fun loadBanner(ad: AdView, activity: Activity) {
+        val adRequest = AdRequest.Builder().build()
+//        Toast.makeText(activity.applicationContext, "${adContainer.width}", Toast.LENGTH_SHORT).show()
+
+        val adSize = getAdSize(activity)
+        ad.adSize = adSize
+
+        ad.loadAd(adRequest)
+    }
+
+    private fun getAdSize(activity: Activity): AdSize {
+        val display = activity.windowManager.defaultDisplay
+        val outMetrics = DisplayMetrics()
+        display.getMetrics(outMetrics)
+
+        val widthPixels = outMetrics.widthPixels
+        val density = outMetrics.density
+
+        var divider = 1
+        if (activity.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) divider = 2
+
+        val adWidth = ((widthPixels / density) / divider).toInt()
+
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(activity.applicationContext, adWidth)
+    }
+
+    fun convertPixelsToDp(px: Int, context: Context): Float {
+        return px / (context.resources.displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
+    }
+
+    fun convertDpToPixel(dp: Int, context: Context): Float {
+        return dp * (context.resources.displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
+    }
+
 }

@@ -6,6 +6,7 @@ import android.graphics.*
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.DisplayMetrics
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
@@ -14,15 +15,20 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
     private var tabatas = ArrayList<Tabata>()
     private lateinit var adapter: TabatasRVAdapter
     private var doubleBackToExitPressedOnce = false
+    private var mFirebaseAnalytics: FirebaseAnalytics? = null
 
     override fun onResume() {
         if (Helpers.modifiedTabata != null) {
@@ -31,8 +37,6 @@ class MainActivity : AppCompatActivity() {
                 tabatas.addAll(Utils.getInstance(this@MainActivity).getAllTabatas()!!)
                 notifyDataSetChanged()
             }
-            // TODO: 01.04.2021 zmiana
-            false
         }
         super.onResume()
     }
@@ -52,6 +56,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this)
+
+        MobileAds.initialize(this)
+        var adSize=Helpers.handleAds(mainAdContainer,this)
+
         Helpers.setupActionBar(resources.getString(R.string.tabataTimer), "", supportActionBar!!, this)
 
         tabatas = initSampleTabatas()
@@ -69,17 +78,26 @@ class MainActivity : AppCompatActivity() {
 //        for(t in tabatas){
 //            Toast.makeText(this, t.durationTotal.toString(), Toast.LENGTH_SHORT).show()
 //        }
+//        Toast.makeText(this, "${mainAdContainer.width}", Toast.LENGTH_SHORT).show()
     }
 
     private fun handleAddTabata(name: String = "", edited: Boolean = false, position: Int = 0) {
-        val tabataName = EditText(this)
+//        val tabataName = EditText(this)
+//
+//        tabataName.setTextColor(Color.WHITE)
+//        tabataName.requestFocus()
+
+        val dialogView = layoutInflater.inflate(R.layout.til_dialog, null)
+        val tabataName = dialogView.findViewById<EditText>(R.id.edtDialog)
+        val tabataTil: TextInputLayout = dialogView.findViewById(R.id.tilDialog)
+        tabataTil.setHint(R.string.name)
         tabataName.setText(name)
         tabataName.setSelection(tabataName.text.length)
-        tabataName.setTextColor(Color.WHITE)
         tabataName.requestFocus()
+        var title = if (name == "") resources.getString(R.string.addNewTabata) else resources.getString(R.string.editName)
         AlertDialog.Builder(this@MainActivity, R.style.DefaultAlertDialogTheme)
-                .setTitle(resources.getString(R.string.addNewTabata))
-                .setView(tabataName)
+                .setTitle(title)
+                .setView(dialogView)
                 .setIcon(R.drawable.ic_add_tabata)
                 .setPositiveButton(resources.getString(R.string.ok)) { _, _ ->
                     if (tabataName.text.isEmpty()) {
@@ -213,6 +231,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun initSampleTabatas(): ArrayList<Tabata> {
         val sampleTabatas = Utils.getInstance(this).getAllTabatas()
+//        if (sampleTabatas != null) {
+//            for (t in sampleTabatas) {
+//                for (p in t.parts) {
+//                    p.imgID = when (p.type) {
+//                        "exercise" -> R.drawable.ic_exercise
+//                        "break" -> R.drawable.ic_break
+//                        "set marker" -> R.drawable.ic_set_marker
+//                        else -> R.drawable.ic_exercise
+//                    }
+//                }
+//            }
+//            Utils.getInstance(this).updateTabatas(sampleTabatas)
+//        }
         return sampleTabatas!!
     }
+
 }

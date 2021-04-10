@@ -81,6 +81,8 @@ class PartsActivity : AppCompatActivity(), PartsRVAdapter.OnItemDoubleTapListene
         partsRV.adapter = adapter
         partsRV.layoutManager = LinearLayoutManager(this)
 
+        Helpers.handleAds(partsAdContainer,this)
+
         val itemTouchHelper = ItemTouchHelper(simpleCallback)
         itemTouchHelper.attachToRecyclerView(partsRV)
 
@@ -118,8 +120,8 @@ class PartsActivity : AppCompatActivity(), PartsRVAdapter.OnItemDoubleTapListene
                 when (position) {
                     0 -> {
                         edtPartName.setText(resources.getString(R.string.exercise))
-                        edtPartName.visibility = View.VISIBLE
-                        partNameTxt.text = resources.getString(R.string.name)
+                        tilPartName.visibility = View.VISIBLE
+                        partNameTxt.visibility=View.GONE
                         partDurationTxt.text = resources.getString(R.string.duration)
                         txtPartDurationA.visibility = View.VISIBLE
                         setupPartDuration.visibility = View.VISIBLE
@@ -131,8 +133,8 @@ class PartsActivity : AppCompatActivity(), PartsRVAdapter.OnItemDoubleTapListene
                     }
                     1 -> {
                         edtPartName.setText(resources.getString(R.string.breakTxt))
-                        edtPartName.visibility = View.VISIBLE
-                        partNameTxt.text = resources.getString(R.string.name)
+                        tilPartName.visibility = View.VISIBLE
+                        partNameTxt.visibility=View.GONE
                         partDurationTxt.text = resources.getString(R.string.duration)
                         txtPartDurationA.visibility = View.VISIBLE
                         setupPartDuration.visibility = View.VISIBLE
@@ -144,8 +146,9 @@ class PartsActivity : AppCompatActivity(), PartsRVAdapter.OnItemDoubleTapListene
                     }
                     2 -> {
                         txtPartDurationA.visibility = View.GONE
-                        edtPartName.visibility = View.GONE
+                        tilPartName.visibility = View.GONE
                         partNameTxt.text = resources.getString(R.string.cycles)
+                        partNameTxt.visibility=View.VISIBLE
                         partDurationTxt.text = resources.getString(R.string.breakAfterSet)
                         setupPartDuration.visibility = View.GONE
                         txtPartCycles.visibility = View.VISIBLE
@@ -184,7 +187,7 @@ class PartsActivity : AppCompatActivity(), PartsRVAdapter.OnItemDoubleTapListene
                 txtPartCycles.text.toString().toInt()
             }
             val partName = if (spinnerPartType.selectedItem.toString() != resources.getString(R.string.setMarker)) {
-                if (edtPartName.text.isEmpty()) {
+                if (edtPartName.text?.isEmpty() == true) {
                     spinnerPartType.selectedItem.toString()
                 } else {
                     edtPartName.text.toString()
@@ -251,8 +254,8 @@ class PartsActivity : AppCompatActivity(), PartsRVAdapter.OnItemDoubleTapListene
         val cycles = ArrayList<Int>()
 
         for (i in parts.indices) {
-            if (parts[i].type == resources.getString(R.string.setMarker)) {
-                if (i + 1 <= parts.lastIndex && parts[i + 1].type == resources.getString(R.string.setMarker)) {
+            if (parts[i].type == "set marker") {
+                if (i + 1 <= parts.lastIndex && parts[i + 1].type == "set marker") {
                     continue
                 } else {
                     cycles.add(parts[i].durartion)
