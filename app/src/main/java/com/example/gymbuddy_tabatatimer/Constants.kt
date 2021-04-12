@@ -22,4 +22,5 @@ object Constants {
     const val TIMER_PAUSED="timer paused"
     const val SYSTEM_TIME="system time"
     const val RESUMED_KEY="resumed"
+    const val APP_RATING_KEY="app rating"
 }

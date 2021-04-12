@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         var adSize=Helpers.handleAds(mainAdContainer,this)
 
         Helpers.setupActionBar(resources.getString(R.string.tabataTimer), "", supportActionBar!!, this)
+        Helpers.showRatingUserInterface(this)
 
         tabatas = initSampleTabatas()
         tabatasRV.layoutManager = LinearLayoutManager(this)

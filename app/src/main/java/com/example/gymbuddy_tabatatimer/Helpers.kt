@@ -10,16 +10,39 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.core.content.ContextCompat
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
+import com.google.android.play.core.review.ReviewInfo
+import com.google.android.play.core.review.ReviewManager
+import com.google.android.play.core.review.ReviewManagerFactory
+import com.google.android.play.core.tasks.Task
 
 object Helpers {
 
     var modifiedTabata: Tabata? = null
+
+    fun showRatingUserInterface(activity: Activity) {
+        val lastAppRating: Long = Utils.getInstance(activity.applicationContext).getLastAppRating()
+        val days: Int = millisToDays(System.currentTimeMillis() - lastAppRating)
+        if (days > 30) {
+            Utils.getInstance(activity.applicationContext).setLastAppRating(System.currentTimeMillis())
+            val manager: ReviewManager = ReviewManagerFactory.create(activity)
+            val request: Task<ReviewInfo> = manager.requestReviewFlow()
+            request.addOnCompleteListener { task ->
+                try {
+                    if (task.isSuccessful) {
+                        val reviewInfo: ReviewInfo = task.result
+                        val flow: Task<Void> = manager.launchReviewFlow(activity, reviewInfo)
+                        flow.addOnCompleteListener { }
+                    }
+                } catch (ex: Exception) {
+                }
+            }
+        }
+    }
 
     fun textViewToSecs(v: TextView): Int {
         return 60 * Integer.parseInt(v.text[0].toString()) +
@@ -93,12 +116,8 @@ object Helpers {
         return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(activity.applicationContext, adWidth)
     }
 
-    fun convertPixelsToDp(px: Int, context: Context): Float {
-        return px / (context.resources.displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
-    }
-
-    fun convertDpToPixel(dp: Int, context: Context): Float {
-        return dp * (context.resources.displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
+    private fun millisToDays(millis: Long): Int {
+        return (millis / 1000 / 60 / 60 / 24).toInt()
     }
 
 }
