@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -43,6 +43,26 @@
         android:layout_centerInParent="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" >
+
+        <com.example.gymbuddy_tabatatimer.helpers.TemplateView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:gnt_template_type="@layout/gnt_small_template_view"
+            android:id="@+id/mainAdTemplate"/>
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/rewardedAdButton"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="55dp"
+        app:layout_constraintBottom_toTopOf="@id/mainAdContainer"
+        app:layout_constraintTop_toTopOf="@id/mainAdContainer"
+        android:src="@drawable/ic_hide_ads"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

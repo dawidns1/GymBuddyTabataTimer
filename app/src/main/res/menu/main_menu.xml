@@ -1,0 +1,43 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@drawable/ic_hexagon_quad_empty"
+        android:title="dropdownMenu"
+        app:showAsAction="ifRoom">
+
+        <menu>
+            <item
+                android:id="@+id/submenuShare"
+                android:title="@string/share" />
+
+            <item
+                android:id="@+id/importFromFile"
+                android:title="@string/load" />
+            <item
+                android:id="@+id/exportToFile"
+                android:title="@string/save" />
+
+            <item android:title="@string/cloud">
+                <menu>
+
+                    <item
+                        android:id="@+id/loadFromCloud"
+                        android:title="@string/loadFromCloud" />
+
+                    <item
+                        android:id="@+id/saveToCloud"
+                        android:title="@string/saveToCloud" />
+
+                    <item
+                        android:id="@+id/deleteFromCloud"
+                        android:title="@string/deleteFromCloud" />
+                </menu>
+            </item>
+
+            <item
+                android:id="@+id/auth"
+                android:title="@string/signIn" />
+
+        </menu>
+    </item>
+</menu>

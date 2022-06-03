@@ -1,8 +1,11 @@
-package com.example.gymbuddy_tabatatimer
+package com.example.gymbuddy_tabatatimer.recyclerViewAdapters
 
 import android.annotation.SuppressLint
 import android.view.*
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gymbuddy_tabatatimer.helpers.Helpers
+import com.example.gymbuddy_tabatatimer.R
+import com.example.gymbuddy_tabatatimer.model.Tabata
 import kotlinx.android.synthetic.main.item_list_tabata.view.*
 
 class TabatasRVAdapter(

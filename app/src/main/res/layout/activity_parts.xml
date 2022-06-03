@@ -6,14 +6,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity"
+    tools:ignore="ContentDescription,HardCodedText,SpUsage">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="10dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
         app:layout_constraintBottom_toTopOf="@id/partsAdContainer"
         app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/manualWrapper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:animateLayoutChanges="true"
+            android:elevation="10dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/black"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/purple_500"
+            app:strokeWidth="1dp">
+
+            <ImageView
+                android:id="@+id/manual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/manual" />
+
+        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/btnStartTabata"
@@ -24,6 +55,7 @@
             android:layout_marginEnd="5dp"
             android:gravity="center"
             android:text="@string/startTabata"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/btnAddPart"
             app:layout_constraintRight_toLeftOf="@id/btnAddPart"
             app:layout_constraintTop_toTopOf="@+id/btnAddPart" />
@@ -37,7 +69,7 @@
             android:layout_marginEnd="5dp"
             android:gravity="center"
             android:text="@string/resume"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/btnAddPart"
             app:layout_constraintRight_toLeftOf="@id/btnStartTabata"
             app:layout_constraintTop_toTopOf="@id/btnAddPart" />
@@ -47,8 +79,10 @@
             style="@style/eFABStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:visibility="gone"
             app:icon="@drawable/ic_add"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/partsRV"
             app:layout_constraintRight_toRightOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -56,40 +90,37 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toBottomOf="@id/partsViewDivider"
+            android:fadingEdge="horizontal"
+            android:fadingEdgeLength="30dp"
+            android:fillViewport="false"
+            android:requiresFadingEdge="vertical"
+            app:layout_constraintBottom_toTopOf="@id/startingDetails"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            tools:layout_editor_absoluteX="10dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/partsViewDivider"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.65" />
+            tools:layout_editor_absoluteX="10dp"
+            tools:listitem="@layout/item_list_part" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/purple_700"
-            app:layout_constraintTop_toTopOf="@id/partsViewDivider" />
+            app:layout_constraintBottom_toBottomOf="@id/partsRV" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/startingDetails"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:animateLayoutChanges="true"
+            android:paddingBottom="5dp"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/partsViewDivider">
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
                 android:id="@+id/preparationTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
-                android:layout_marginTop="12dp"
                 android:text="@string/preparationCap"
                 android:textSize="20dp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -133,7 +164,7 @@
                 android:id="@+id/roundDurationTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/roundDuration"
                 android:textSize="20dp"
                 app:layout_constraintLeft_toLeftOf="@id/preparationTxt"
@@ -166,7 +197,7 @@
                 android:id="@+id/roundsTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/roundsCap"
                 android:textSize="20dp"
                 app:layout_constraintLeft_toLeftOf="@id/roundDurationTxt"
@@ -219,7 +250,7 @@
                 android:id="@+id/totalDurationTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/total"
                 android:textSize="20dp"
                 app:layout_constraintLeft_toLeftOf="@id/roundsTxt"
@@ -250,16 +281,23 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/addTabataView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
             android:animateLayoutChanges="true"
-            android:visibility="gone"
+            android:elevation="10dp"
+            android:visibility="visible"
             app:cardBackgroundColor="@color/grey_700"
             app:cardCornerRadius="10dp"
-            app:layout_constraintTop_toBottomOf="@id/partsViewDivider">
+            app:layout_constraintBottom_toBottomOf="@id/partsRV"
+            app:layout_constraintTop_toTopOf="@id/partsRV"
+            app:strokeColor="@color/purple_500"
+            app:strokeWidth="1dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -274,18 +312,19 @@
                     android:layout_height="40dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@drawable/ic_close"
+                    app:layout_constraintBottom_toTopOf="@+id/imgFinishInput"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/partTypeTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/partType"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/imgFinishInput"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_check"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgCloseInput" />
 
                 <ImageView
                     android:id="@+id/imgPartType"
@@ -294,117 +333,40 @@
                     android:layout_marginEnd="5dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@drawable/ic_hexagon_triple"
-                    app:layout_constraintBottom_toBottomOf="@+id/partTypeTxt"
-                    app:layout_constraintEnd_toStartOf="@+id/partTypeTxt"
-                    app:layout_constraintTop_toTopOf="@+id/partTypeTxt" />
+                    app:layout_constraintBottom_toBottomOf="@+id/tilPartType"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tilPartType" />
 
-                <Spinner
-                    android:id="@+id/spinnerPartType"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilPartType"
+                    style="@style/textInputStyleDropdown"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="50dp"
-                    android:background="@drawable/spinner"
-                    android:entries="@array/spinnerType"
-                    android:popupBackground="@color/grey_700"
-                    app:layout_constraintBottom_toBottomOf="@id/partTypeTxt"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:hint="@string/partType"
                     app:layout_constraintEnd_toStartOf="@+id/imgCloseInput"
-                    app:layout_constraintStart_toEndOf="@id/partTypeTxt"
-                    app:layout_constraintTop_toTopOf="@id/partTypeTxt" />
+                    app:layout_constraintStart_toEndOf="@id/imgPartType"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/partNameTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/name"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="@id/imgPartName"
-                    app:layout_constraintStart_toStartOf="@id/partTypeTxt"
-                    app:layout_constraintTop_toTopOf="@id/imgPartName" />
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/edtPartType"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:text="@string/exercise" />
 
-
-                <TextView
-                    android:id="@+id/txtPartCycles"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="5"
-                    android:textColor="@color/purple_200"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="@id/imgPartName"
-                    app:layout_constraintEnd_toEndOf="@id/spinnerPartType"
-                    app:layout_constraintStart_toStartOf="@id/spinnerPartType"
-                    app:layout_constraintTop_toTopOf="@id/imgPartName" />
-
-
-                <ImageView
-                    android:id="@+id/plusPartCycles"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/ic_plus"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="@id/txtPartCycles"
-                    app:layout_constraintStart_toEndOf="@id/txtPartCycles"
-                    app:layout_constraintTop_toTopOf="@id/txtPartCycles" />
-
-                <ImageView
-                    android:id="@+id/minusPartCycles"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/ic_minus"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="@id/txtPartCycles"
-                    app:layout_constraintEnd_toStartOf="@id/txtPartCycles"
-                    app:layout_constraintTop_toTopOf="@id/txtPartCycles" />
-
-                <TextView
-                    android:id="@+id/txtBreakSet"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="0:10"
-                    android:textColor="@color/purple_200"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="@id/imgPartDuration"
-                    app:layout_constraintEnd_toEndOf="@id/txtPartCycles"
-                    app:layout_constraintStart_toStartOf="@id/txtPartCycles"
-                    app:layout_constraintTop_toTopOf="@id/imgPartDuration" />
-
-
-                <ImageView
-                    android:id="@+id/setupBreakSet"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/ic_timer"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="@id/txtBreakSet"
-                    app:layout_constraintStart_toEndOf="@id/txtBreakSet"
-                    app:layout_constraintTop_toTopOf="@id/txtBreakSet" />
-
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageView
                     android:id="@+id/imgPartName"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginTop="40dp"
                     android:src="@drawable/ic_hexagon_triple"
+                    app:layout_constraintBottom_toBottomOf="@id/tilPartName"
                     app:layout_constraintStart_toStartOf="@id/imgPartType"
-                    app:layout_constraintTop_toBottomOf="@+id/imgPartType" />
-
-                <!--            <EditText-->
-                <!--                android:id="@+id/edtPartName"-->
-                <!--                style="@style/EditTextStyle"-->
-                <!--                android:layout_width="0dp"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                app:layout_constraintBottom_toBottomOf="@id/partNameTxt"-->
-                <!--                app:layout_constraintLeft_toLeftOf="@id/spinnerPartType"-->
-                <!--                app:layout_constraintRight_toRightOf="@id/spinnerPartType"-->
-                <!--                app:layout_constraintTop_toTopOf="@id/partNameTxt" />-->
+                    app:layout_constraintTop_toTopOf="@id/tilPartName" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilPartName"
@@ -413,73 +375,101 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/name"
                     app:endIconMode="clear_text"
-                    app:layout_constraintBottom_toBottomOf="@+id/imgPartName"
-                    app:layout_constraintEnd_toEndOf="@id/spinnerPartType"
-                    app:layout_constraintStart_toStartOf="@id/partTypeTxt"
-                    app:layout_constraintTop_toTopOf="@+id/imgPartName">
+                    app:layout_constraintEnd_toEndOf="@id/tilPartType"
+                    app:layout_constraintStart_toStartOf="@id/tilPartType"
+                    app:layout_constraintTop_toBottomOf="@id/tilPartType">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edtPartName"
+                        style="@style/EditTextStyle"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@string/exercise" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:id="@+id/partDurationTxt"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilPartDuration"
+                    style="@style/textInputStyle"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="@string/duration"
-                    app:layout_constraintBottom_toBottomOf="@id/imgPartDuration"
-                    app:layout_constraintStart_toEndOf="@id/imgPartDuration"
-                    app:layout_constraintTop_toTopOf="@id/imgPartDuration" />
+                    android:hint="@string/duration"
+                    app:endIconMode="clear_text"
+                    app:layout_constraintEnd_toEndOf="@id/tilPartName"
+                    app:layout_constraintStart_toStartOf="@id/tilPartName"
+                    app:layout_constraintTop_toBottomOf="@id/tilPartName">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtPartDuration"
+                        style="@style/EditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="0:20" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageView
                     android:id="@+id/imgPartDuration"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="5dp"
                     android:src="@drawable/ic_hexagon_triple"
+                    app:layout_constraintBottom_toBottomOf="@id/tilPartDuration"
                     app:layout_constraintStart_toStartOf="@id/imgPartName"
-                    app:layout_constraintTop_toBottomOf="@id/imgPartName" />
-
-                <TextView
-                    android:id="@+id/txtPartDurationA"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="0:20"
-                    android:textColor="@color/purple_200"
-                    android:textSize="20dp"
-                    app:layout_constraintBottom_toBottomOf="@id/partDurationTxt"
-                    app:layout_constraintEnd_toEndOf="@id/tilPartName"
-                    app:layout_constraintStart_toStartOf="@id/tilPartName"
-                    app:layout_constraintTop_toTopOf="@id/partDurationTxt" />
-
+                    app:layout_constraintTop_toTopOf="@id/tilPartDuration" />
 
                 <ImageView
                     android:id="@+id/setupPartDuration"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_marginEnd="10dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@drawable/ic_timer"
-                    app:layout_constraintBottom_toBottomOf="@id/txtPartDurationA"
-                    app:layout_constraintStart_toEndOf="@id/txtPartDurationA"
-                    app:layout_constraintTop_toTopOf="@id/txtPartDurationA" />
+                    app:layout_constraintBottom_toBottomOf="@id/tilPartDuration"
+                    app:layout_constraintEnd_toEndOf="@id/tilPartDuration"
+                    app:layout_constraintTop_toTopOf="@id/tilPartDuration" />
 
-                <Button
-                    android:id="@+id/btnAdd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Add"
-                    app:cornerRadius="20dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                <ImageView
+                    android:id="@+id/setupBreakSet"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_timer"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/tilPartDuration"
+                    app:layout_constraintEnd_toEndOf="@id/tilPartDuration"
+                    app:layout_constraintTop_toTopOf="@id/tilPartDuration" />
+
+                <ImageView
+                    android:id="@+id/minusPartCycles"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_minus"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/tilPartName"
+                    app:layout_constraintEnd_toEndOf="@id/tilPartName"
+                    app:layout_constraintTop_toTopOf="@id/tilPartName" />
+
+                <ImageView
+                    android:id="@+id/plusPartCycles"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_plus"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/tilPartName"
+                    app:layout_constraintEnd_toStartOf="@id/minusPartCycles"
+                    app:layout_constraintTop_toTopOf="@id/tilPartName" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -491,6 +481,15 @@
         android:layout_centerInParent="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.example.gymbuddy_tabatatimer.helpers.TemplateView
+            android:id="@+id/partsAdTemplate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:gnt_template_type="@layout/gnt_small_template_view"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

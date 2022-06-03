@@ -14,7 +14,6 @@
     <string name="duration">Duration</string>
     <string name="cycles">Cycles</string>
     <string name="breakAfterSet">Break after set</string>
-    <string name="save">save</string>
     <string name="tabataDeleted">Tabata deleted</string>
     <string name="undo">Undo</string>
     <string name="cancel">Cancel</string>
@@ -27,18 +26,64 @@
     <string name="roundDuration">Round duration</string>
     <string name="roundsCap">Rounds</string>
     <string name="total" translatable="false">Total</string>
-    <string name="partType">Part type</string>
+    <string name="partType">Type</string>
     <string name="tapTimer">tap timer to start/pause</string>
     <string name="swipe">swipe left to back / swipe right to skip</string>
     <string name="cycle">cycle</string>
     <string name="set">set</string>
-    <string name="startTabata">Start tabata</string>
+    <string name="startTabata" translatable="false">Start</string>
     <string name="resume">Resume</string>
     <string name="editName">Edit name</string>
+    <string name="share">Share</string>
+    <string name="load">Load</string>
+    <string name="save">Save</string>
+    <string name="toFile">to file</string>
+    <string name="toAppsMemory">to app\'s memory</string>
+    <string name="fromFile">from file</string>
+    <string name="fromAppsMemory">from app\'s memory</string>
+    <string name="permissions">Permissions</string>
+    <string name="permissionInfo">In order to share, save or load a file this app needs to be granted permission to access storage</string>
+    <string name="selectWorkoutsToShare">Select workouts to share</string>
+    <string name="noWorkoutsSelected">No workouts selected</string>
+    <string name="shareWorkoutsVia">Share workouts via</string>
+    <string name="fileLocation">File location</string>
+    <string name="fileLocationInfo">Make sure the file is in Documents directory and copy file\'s name</string>
+    <string name="fileName">File name</string>
+    <string name="next">Next</string>
+    <string name="noWorkoutsToLoad">No workouts to load</string>
+    <string name="selectWorkoutsToLoad">Select workouts to load</string>
+    <string name="fileNotFound">File not found</string>
+    <string name="checkLocationName">Check file location and name and try again</string>
+    <string name="selectWorkoutsToSave">Select workouts to save</string>
+    <string name="insertFileName">Insert file name</string>
+    <string name="workoutsSavedIn">Workouts saved in</string>
+    <string name="signIn">Sign in</string>
 
-    <string-array name="spinnerType">
+    <string-array name="partType">
         <item>@string/exercise</item>
         <item>@string/breakTxt</item>
         <item>@string/setMarker</item>
     </string-array>
+    <string name="signOut">Sign out</string>
+    <string name="signedInAs">Signed in as</string>
+    <string name="signedOut">Signed out</string>
+    <string name="errorSigningIn">Error signing in</string>
+    <string name="cloud">Cloud</string>
+    <string name="loadFromCloud">Load from cloud</string>
+    <string name="saveToCloud">Save to cloud</string>
+    <string name="deleteFromCloud">Delete from cloud</string>
+    <string name="noWorkoutsToDelete">No workouts to delete</string>
+    <string name="selectWorkoutsToDelete">Select workouts to delete from cloud</string>
+    <string name="delete">Delete</string>
+    <string name="saved">tabata saved</string>
+    <string name="unableToSave">unable to save</string>
+    <string name="deleted">tabata deleted</string>
+    <string name="unableToDelete">unable to delete</string>
+    <string name="updated">tabata updated</string>
+    <string name="unableToUpdate">unable to update</string>
+    <string name="disableAds">Disable ads temporarily</string>
+    <string name="disableAdsInfo">Watch an ad to disable banner ads for a week</string>
+    <string name="failedToLoad">Failed to load</string>
+    <string name="failedToLoadInfo">The ad failed to load, but the reward is granted anyway</string>
+
 </resources>

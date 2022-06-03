@@ -1,15 +1,19 @@
-package com.example.gymbuddy_tabatatimer
+package com.example.gymbuddy_tabatatimer.recyclerViewAdapters
 
 import android.annotation.SuppressLint
 import android.view.*
-import android.widget.Toast
-import androidx.appcompat.widget.PopupMenu
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gymbuddy_tabatatimer.helpers.Helpers
+import com.example.gymbuddy_tabatatimer.model.Part
+import com.example.gymbuddy_tabatatimer.R
 import kotlinx.android.synthetic.main.item_list_part.view.*
 
 class PartsRVAdapter(
     private val parts: ArrayList<Part>,
-    private val doubleTapListener: PartsRVAdapter.OnItemDoubleTapListener
+    private val doubleTapListener: OnItemDoubleTapListener
 ) :
     RecyclerView.Adapter<PartsRVAdapter.ViewHolder>() {
 
@@ -28,12 +32,12 @@ class PartsRVAdapter(
         holder.txtPartName.text = if(ci.type !="set marker") ci.name else holder.parent.resources.getString(R.string.setMarker)
 
         holder.txtPartDuration.text = if (ci.type != "set marker") {
-            Helpers.secsToString(ci.durartion)
+            Helpers.secsToString(ci.duration)
         } else {
             if(ci.setBreak==0){
-            ci.durartion.toString()
+            ci.duration.toString()
             }else{
-                "${Helpers.secsToString(ci.setBreak)} / ${ci.durartion}"
+                "${Helpers.secsToString(ci.setBreak)} / ${ci.duration}"
             }
         }
         holder.imgPart.setImageResource(ci.imgID)
@@ -46,12 +50,11 @@ class PartsRVAdapter(
     }
     @SuppressLint("ClickableViewAccessibility")
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var txtPartName = itemView.txtPartName
-        var txtPartDuration = itemView.txtPartDuration
-        var imgPart = itemView.imgPart
-        var btnMenuPart = itemView.btnMenuPart
-        var txtPartID = itemView.txtPartID
-        var parent=itemView.parentPartRV
+        var txtPartName: TextView = itemView.txtPartName
+        var txtPartDuration:TextView = itemView.txtPartDuration
+        var imgPart:ImageView = itemView.imgPart
+        var txtPartID:TextView = itemView.txtPartID
+        var parent:CardView=itemView.parentPartRV
 
         init {
 //            btnMenuPart.setOnClickListener {

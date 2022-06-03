@@ -1,0 +1,10 @@
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/ic_info"
+        android:id="@+id/menuInfo"
+        android:title="dropdownMenu"
+        app:showAsAction="ifRoom">
+
+    </item>
+</menu>

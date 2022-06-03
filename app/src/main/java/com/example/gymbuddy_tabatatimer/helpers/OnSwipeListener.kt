@@ -1,4 +1,4 @@
-package com.example.gymbuddy_tabatatimer
+package com.example.gymbuddy_tabatatimer.helpers
 
 import android.view.GestureDetector
 import android.view.MotionEvent

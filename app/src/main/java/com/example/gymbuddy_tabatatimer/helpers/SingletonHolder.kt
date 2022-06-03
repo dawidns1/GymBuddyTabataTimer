@@ -1,4 +1,4 @@
-package com.example.gymbuddy_tabatatimer
+package com.example.gymbuddy_tabatatimer.helpers
 
 open class SingletonHolder<out T, in A>(private val constructor: (A) -> T) {
 

@@ -1,6 +1,9 @@
-package com.example.gymbuddy_tabatatimer
+package com.example.gymbuddy_tabatatimer.helpers
 
 import android.content.Context
+import com.example.gymbuddy_tabatatimer.helpers.Constants.REWARD_GRANTED_KEY
+import com.example.gymbuddy_tabatatimer.model.Part
+import com.example.gymbuddy_tabatatimer.model.Tabata
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -8,11 +11,11 @@ class Utils private constructor(context: Context) {
 
     private val sharedPreferences =
         context.getSharedPreferences(Constants.DB_NAME, Context.MODE_PRIVATE)!!
-    var editor = sharedPreferences.edit()!!
-    var gson: Gson = Gson()
     var tabatasID: Int
     var partsID: Int
     var lastAppRating: Long
+    var lastAdShown: Long
+    var rewardGranted: Long
 
     init {
         if (null == getAllTabatas()) {
@@ -22,17 +25,41 @@ class Utils private constructor(context: Context) {
         tabatasID = getTabatasID()
         partsID = getPartsID()
         lastAppRating=getLastAppRating()
+        lastAdShown=getLastAdShown()
+        rewardGranted=getRewardGranted()
 
     }
 
     private fun initData() {
-        val tabatas: ArrayList<Tabata> = ArrayList<Tabata>()
-        tabatas.add(Tabata(99, "Tabata1"))
-        tabatas.add(Tabata(100, "Tabata2"))
+        val tabatas: ArrayList<Tabata> = ArrayList()
         val editor = sharedPreferences.edit()
         val gson = Gson()
         editor.putString(Constants.ALL_TABATAS, gson.toJson(tabatas))
-        editor.commit()
+        editor.apply()
+    }
+
+    @JvmName("rewardGranted")
+    fun getRewardGranted(): Long {
+        return sharedPreferences.getLong(REWARD_GRANTED_KEY, 0)
+    }
+
+    fun setRewardGranted(rewardGranted: Long): Boolean {
+        val editor = sharedPreferences.edit()
+        editor.putLong(REWARD_GRANTED_KEY, rewardGranted)
+        editor.apply()
+        return true
+    }
+
+    @JvmName("getLastAdShown1")
+    fun getLastAdShown(): Long {
+        return sharedPreferences.getLong(Constants.LAST_AD_SHOWN_KEY, 0)
+    }
+
+    fun setLastAdShown(lastAdShown: Long): Boolean {
+        val editor = sharedPreferences.edit()
+        editor.putLong(Constants.LAST_AD_SHOWN_KEY, lastAdShown)
+        editor.apply()
+        return true
     }
 
     @JvmName("getLastAppRating1")
@@ -43,7 +70,7 @@ class Utils private constructor(context: Context) {
     fun setLastAppRating(lastAppRating: Long): Boolean {
         val editor = sharedPreferences.edit()
         editor.putLong(Constants.APP_RATING_KEY, lastAppRating)
-        editor.commit()
+        editor.apply()
         return true
     }
 
@@ -64,14 +91,14 @@ class Utils private constructor(context: Context) {
     private fun setTabatasID(tabatasID: Int): Boolean {
         val editor = sharedPreferences.edit()
         editor.putInt(Constants.TABATA_ID, tabatasID)
-        editor.commit()
+        editor.apply()
         return true
     }
 
     private fun setTabataPartsID(tabataPartsID: Int): Boolean {
         val editor = sharedPreferences.edit()
         editor.putInt(Constants.PART_ID, tabataPartsID)
-        editor.commit()
+        editor.apply()
         return true
     }
 
@@ -79,10 +106,10 @@ class Utils private constructor(context: Context) {
         val gson = Gson()
         val type = object : TypeToken<ArrayList<Tabata?>?>() {}.type
         return gson.fromJson<ArrayList<Tabata>>(
-                sharedPreferences.getString(
-                        Constants.ALL_TABATAS,
-                        null
-                ), type
+            sharedPreferences.getString(
+                Constants.ALL_TABATAS,
+                null
+            ), type
         )
     }
 
@@ -94,7 +121,7 @@ class Utils private constructor(context: Context) {
                 val editor = sharedPreferences.edit()
                 editor.remove(Constants.ALL_TABATAS)
                 editor.putString(Constants.ALL_TABATAS, gson.toJson(tabatas))
-                editor.commit()
+                editor.apply()
                 return true
             }
         }
@@ -111,10 +138,10 @@ class Utils private constructor(context: Context) {
                         val editor = sharedPreferences.edit()
                         editor.remove(Constants.ALL_TABATAS)
                         editor.putString(
-                                Constants.ALL_TABATAS,
-                                gson.toJson(tabatas)
+                            Constants.ALL_TABATAS,
+                            gson.toJson(tabatas)
                         )
-                        editor.commit()
+                        editor.apply()
                         return true
                     }
                 }
@@ -128,15 +155,16 @@ class Utils private constructor(context: Context) {
         if (null != tabatas) {
             for (t in tabatas) {
                 if (t.id == tabata.id) {
+                    t.state=tabata.state
                     t.durationTotal=tabata.durationTotal
                     t.defRounds = tabata.defRounds
                     t.defPrep = tabata.defPrep
-                    t.state=tabata.state
+                    t.parts=tabata.parts
                     val gson = Gson()
                     val editor = sharedPreferences.edit()
                     editor.remove(Constants.ALL_TABATAS)
                     editor.putString(Constants.ALL_TABATAS, gson.toJson(tabatas))
-                    editor.commit()
+                    editor.apply()
                     return true
 
                 }
@@ -146,11 +174,11 @@ class Utils private constructor(context: Context) {
     }
 
     fun addPartToTabata(tabata: Tabata, part: Part): Boolean {
-        var tabatas = getAllTabatas()
+        val tabatas = getAllTabatas()
         if (null != tabatas) {
             for (t in tabatas) {
                 if (t.id == tabata.id) {
-                    var parts = t.parts
+                    val parts = t.parts
                     if (parts.add(part)) {
                         t.parts = parts
                         t.durationTotal = tabata.durationTotal
@@ -158,10 +186,10 @@ class Utils private constructor(context: Context) {
                         val editor = sharedPreferences.edit()
                         editor.remove(Constants.ALL_TABATAS)
                         editor.putString(
-                                Constants.ALL_TABATAS,
-                                gson.toJson(tabatas)
+                            Constants.ALL_TABATAS,
+                            gson.toJson(tabatas)
                         )
-                        editor.commit()
+                        editor.apply()
                         return true
                     }
                 }
@@ -182,10 +210,10 @@ class Utils private constructor(context: Context) {
                         val editor = sharedPreferences.edit()
                         editor.remove(Constants.ALL_TABATAS)
                         editor.putString(
-                                Constants.ALL_TABATAS,
-                                gson.toJson(tabatas)
+                            Constants.ALL_TABATAS,
+                            gson.toJson(tabatas)
                         )
-                        editor.commit()
+                        editor.apply()
                         return true
                     }
                 }
@@ -205,10 +233,10 @@ class Utils private constructor(context: Context) {
                     val editor = sharedPreferences.edit()
                     editor.remove(Constants.ALL_TABATAS)
                     editor.putString(
-                            Constants.ALL_TABATAS,
-                            gson.toJson(tabatas)
+                        Constants.ALL_TABATAS,
+                        gson.toJson(tabatas)
                     )
-                    editor.commit()
+                    editor.apply()
                     return true
 
                 }
@@ -228,10 +256,10 @@ class Utils private constructor(context: Context) {
                     val editor = sharedPreferences.edit()
                     editor.remove(Constants.ALL_TABATAS)
                     editor.putString(
-                            Constants.ALL_TABATAS,
-                            gson.toJson(tabatas)
+                        Constants.ALL_TABATAS,
+                        gson.toJson(tabatas)
                     )
-                    editor.commit()
+                    editor.apply()
                     return true
                 }
             }
@@ -244,7 +272,7 @@ class Utils private constructor(context: Context) {
         val editor = sharedPreferences.edit()
         editor.remove(Constants.ALL_TABATAS)
         editor.putString(Constants.ALL_TABATAS, gson.toJson(tabatas))
-        editor.commit()
+        editor.apply()
         return true
     }
 
